@@ -5,6 +5,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -12,8 +14,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MainActivity extends FragmentActivity {
 
-    private final LatLng mDestinationLatLng = new LatLng(-43.0753, -89.4034);
+    private final LatLng mDestinationLatLng = new LatLng(43.0753, -89.4034);
     private GoogleMap mMap;
+    private FusedLocationProviderClient mFusedLocationProviderClient; // save the instance
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,8 @@ public class MainActivity extends FragmentActivity {
             //code to display marker
             googleMap.addMarker(new MarkerOptions().position(mDestinationLatLng).title("Destination"));
         });
+
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
     }
 
